@@ -23,9 +23,17 @@ def normalize_phone(phone_number: str) -> str:
     pattern =r'[^\d+]'
     replacement = ''
     formatted_phone_number = re.sub(pattern, replacement, phone_number)
-    if not formatted_phone_number.startswith('+38'):
+
+    if formatted_phone_number.startswith('38'):
+        formatted_phone_number = '+' + formatted_phone_number
+    if formatted_phone_number.startswith('8'):
+        formatted_phone_number = '+3' + formatted_phone_number
+
+    elif not formatted_phone_number.startswith('+38'):
         formatted_phone_number = '+38' + formatted_phone_number
+
     return formatted_phone_number
 
 sanitized_numbers = [normalize_phone(num) for num in raw_numbers]
-print("Нормалізовані номери телефонів для SMS-розсилки:", sanitized_numbers)
+print("Нормалізовані номери телефонів для SMS-розсилки:")
+print('\n'.join(sanitized_numbers))
