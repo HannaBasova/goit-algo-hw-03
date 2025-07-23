@@ -11,9 +11,9 @@ def get_days_from_today(date:str)->int:
     try:
         date_obj = datetime.strptime(date, '%Y-%m-%d') #Convert a string to a date object
         today = datetime.today() #current date
-        days_ahead = (date_obj - today).days
+        days_ahead = (date_obj.date() - today.date()).days
         return days_ahead
     except ValueError:
         print("Please enter a correct date format: 'YYYY-MM-DD' ")
 
-print(get_days_from_today('2025-03-25'))
+print(get_days_from_today('2025-07-23'))
